@@ -1,5 +1,8 @@
+import 'package:barber_app_user/views/Register.dart';
+
 routes() {
   return {
+    '/register': (context) => Register(),
     /* '/register/pin': (context) => ConfirmPin(),
     '/register/user': (context) => CreateUser(),
     '/register/image': (context) => SelectImage(),

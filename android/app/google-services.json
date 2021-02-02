@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "630191550175",
+    "project_id": "barbershop-d47e0",
+    "storage_bucket": "barbershop-d47e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630191550175:android:f59947a2d9e215afe1036a",
+        "android_client_info": {
+          "package_name": "com.robertoproducts.agenda_barbearia_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630191550175-gm7mppglrcborfkq4qqc4iqemjpo95sn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqYX-r2RtQWtuexg4h3UwN8M_G4Tit1dM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630191550175-gm7mppglrcborfkq4qqc4iqemjpo95sn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630191550175:android:e24050afc47e7801e1036a",
+        "android_client_info": {
+          "package_name": "com.robertoproducts.barber_app_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630191550175-ngkusjah6cres876c6vrmkmhhb69nm2c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.robertoproducts.barber_app_user",
+            "certificate_hash": "9b055baee2ccc14d93a4d16f67d2a18653f21543"
+          }
+        },
+        {
+          "client_id": "630191550175-gm7mppglrcborfkq4qqc4iqemjpo95sn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqYX-r2RtQWtuexg4h3UwN8M_G4Tit1dM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630191550175-gm7mppglrcborfkq4qqc4iqemjpo95sn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
