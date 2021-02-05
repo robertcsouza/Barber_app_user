@@ -62,7 +62,7 @@ class _UserSelectImageState extends State<UserSelectImage> {
     FirebaseStorage storage = FirebaseStorage.instance;
     FirebaseFirestore db = FirebaseFirestore.instance;
     Reference root = storage.ref();
-    Reference arq = root.child('costumers').child(fileName);
+    Reference arq = root.child('customers').child(fileName);
 
     if (image != null) {
       easyLoading();

@@ -119,28 +119,13 @@ class _MyHomePageState extends State<MyHomePage> {
       auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
+        Navigator.pushNamed(context, '/schedules');
         EasyLoading.dismiss();
       }).catchError((error) {
         print(error.toString());
         EasyLoading.showError('Não foi possivel fazer o Login');
       });
     }
-  }
-
-  _isEmployee({@required String uid}) async {
-    var userId = await fb.collection('employee').get();
-    List usersEmployee = List();
-    bool res = false;
-    for (var item in userId.docs) {
-      usersEmployee.add(item.id);
-    }
-    usersEmployee.forEach((element) {
-      if (element == uid) {
-        res = true;
-      }
-    });
-
-    return res;
   }
 
   _register() {

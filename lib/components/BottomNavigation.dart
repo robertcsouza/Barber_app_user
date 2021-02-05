@@ -21,7 +21,7 @@ BottomNavigationBar navigation({index, ontapped, context}) {
     onTap: (index) {
       switch (index) {
         case 0:
-          Navigator.pushReplacementNamed(context, 'barber/scheduling');
+          Navigator.pushReplacementNamed(context, '/schedules');
           break;
 
         case 1:
@@ -30,7 +30,7 @@ BottomNavigationBar navigation({index, ontapped, context}) {
           break;
 
         case 2:
-          Navigator.pushReplacementNamed(context, 'barber/profile');
+          Navigator.pushReplacementNamed(context, '/perfil');
           break;
       }
     },

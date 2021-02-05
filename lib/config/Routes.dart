@@ -1,3 +1,4 @@
+import 'package:barber_app_user/views/Perfil/Perfil.dart';
 import 'package:barber_app_user/views/Register/Register.dart';
 import 'package:barber_app_user/views/Register/UserSelectImage.dart';
 import 'package:barber_app_user/views/Scheduling/Schedules.dart';
@@ -7,6 +8,7 @@ routes() {
     '/register': (context) => Register(),
     '/register/image': (context) => UserSelectImage(),
     '/schedules': (context) => Schedules(),
+    '/perfil': (context) => Perfil(),
     /* '/register/pin': (context) => ConfirmPin(),
     '/register/user': (context) => CreateUser(),
     '/register/image': (context) => SelectImage(),
