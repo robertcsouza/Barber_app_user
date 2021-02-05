@@ -1,12 +1,16 @@
-import 'package:barber_app_user/views/Register.dart';
+import 'package:barber_app_user/views/Register/Register.dart';
+import 'package:barber_app_user/views/Register/UserSelectImage.dart';
+import 'package:barber_app_user/views/Scheduling/Schedules.dart';
 
 routes() {
   return {
     '/register': (context) => Register(),
+    '/register/image': (context) => UserSelectImage(),
+    '/schedules': (context) => Schedules(),
     /* '/register/pin': (context) => ConfirmPin(),
     '/register/user': (context) => CreateUser(),
     '/register/image': (context) => SelectImage(),
-
+'/register/image': (context) => SelectImage(),
     // admin Routes
     'admin/scheduling': (context) => Scheduling(),
     'admin/employe': (context) => Employe(),

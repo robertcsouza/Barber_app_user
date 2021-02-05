@@ -1,12 +1,12 @@
-class Employee {
+class Customer {
   String nome;
   String uid;
   String email;
   String password;
   String imagePath;
-  bool   enabled;
+  bool enabled;
 
-  Employee(
+  Customer(
       {String nome,
       String email,
       String password,

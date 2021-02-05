@@ -5,7 +5,6 @@ import 'package:barber_app_user/components/ToastShow.dart';
 import 'package:barber_app_user/config/Routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'styles/Colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      builder: EasyLoading.init(),
       initialRoute: '/',
       routes: routes(),
       theme: ThemeData(
@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     EasyLoading.instance.indicatorType = EasyLoadingIndicatorType.cubeGrid;
     if (auth.currentUser != null) {
-      _checkLogin(uid: auth.currentUser.uid);
+      //chamar nova activity
     }
     super.initState();
   }
@@ -119,59 +119,12 @@ class _MyHomePageState extends State<MyHomePage> {
       auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
-        await _checkLogin(uid: value.user.uid);
         EasyLoading.dismiss();
       }).catchError((error) {
         print(error.toString());
         EasyLoading.showError('Não foi possivel fazer o Login');
       });
     }
-  }
-
-  _checkLogin({@required String uid}) async {
-    var isAdm = await _isAdmin(uid: uid);
-    var isEmploye = await _isEmployee(uid: uid);
-    if (isAdm == false && isEmploye == false) {
-      EasyLoading.showError(
-          'Ocorreu um erro na sua autenticação por favor tente novamente');
-    } else if (isAdm == true) {
-      Navigator.pushReplacementNamed(context, 'admin/scheduling');
-    } else if (isEmploye == true) {
-      var enabled = await _isEnable(doc: 'employee', uid: uid);
-      if (enabled == true) {
-        Navigator.pushReplacementNamed(context, 'barber/scheduling');
-      } else {
-        EasyLoading.showError(
-            'Você nao faz mais parte do grupo de funcionarios por favor solicite uma nova autenticação');
-
-        Future.delayed(Duration(seconds: 2), () {
-          Navigator.pushReplacementNamed(context, 'barber/reconfirm');
-        });
-      }
-    }
-  }
-
-  _isEnable({String doc, String uid}) async {
-    var user = await fb.collection(doc).doc(uid).get();
-
-    return user.data()['enabled'];
-  }
-
-  _isAdmin({@required String uid}) async {
-    var userId = await fb.collection('admin').get();
-    List usersAdmin = List();
-    bool res = false;
-    for (var item in userId.docs) {
-      usersAdmin.add(item.id);
-    }
-
-    usersAdmin.forEach((element) {
-      if (element == uid) {
-        res = true;
-      }
-    });
-
-    return res;
   }
 
   _isEmployee({@required String uid}) async {
@@ -191,6 +144,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _register() {
-    Navigator.pushNamed(context, '/register/user');
+    Navigator.pushNamed(context, '/register');
   }
 }

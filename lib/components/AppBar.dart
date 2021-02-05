@@ -9,7 +9,9 @@ AppBar appbar({String title}) {
     centerTitle: true,
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [Text(title), _stream()],
+      children: [
+        Text(title), /*_stream()*/
+      ],
     ),
     backgroundColor: bgColor,
   );
