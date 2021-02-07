@@ -39,7 +39,8 @@ class Customer {
     Map<String, dynamic> map = {
       'nome': this.nome,
       'email': this.email,
-      'thumbnail': this.imagePath
+      'thumbnail': this.imagePath,
+      'customerId': this.uid
     };
     return map;
   }

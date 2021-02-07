@@ -53,7 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     EasyLoading.instance.indicatorType = EasyLoadingIndicatorType.cubeGrid;
     if (auth.currentUser != null) {
-      //chamar nova activity
+      Future(() {
+        Navigator.pushNamed(context, '/schedules');
+      });
     }
     super.initState();
   }
