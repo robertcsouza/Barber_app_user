@@ -25,8 +25,7 @@ BottomNavigationBar navigation({index, ontapped, context}) {
           break;
 
         case 1:
-          Navigator.pushReplacementNamed(
-              context, 'barber/scheduling/selectUser');
+          Navigator.pushNamed(context, '/scheduling');
           break;
 
         case 2:
