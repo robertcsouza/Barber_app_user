@@ -60,7 +60,7 @@ class _GalleryState extends State<Gallery> {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, 'admin/detailImage',
+                  Navigator.pushNamed(context, '/image/detail',
                       arguments: documentsSnapshots[index].data()['url']);
                 },
                 child: Container(

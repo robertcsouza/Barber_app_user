@@ -1,3 +1,5 @@
+import 'package:barber_app_user/components/Rating.dart';
+import 'package:barber_app_user/views/Gallery/DetailImage.dart';
 import 'package:barber_app_user/views/Perfil/Perfil.dart';
 import 'package:barber_app_user/views/Register/Register.dart';
 import 'package:barber_app_user/views/Register/UserSelectImage.dart';
@@ -11,6 +13,7 @@ routes() {
     '/schedules': (context) => Schedules(),
     '/perfil': (context) => Perfil(),
     '/scheduling': (context) => Scheduling(),
+    '/image/detail': (context) => DetailImage(),
     /* '/register/pin': (context) => ConfirmPin(),
     '/register/user': (context) => CreateUser(),
     '/register/image': (context) => SelectImage(),

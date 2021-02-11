@@ -6,7 +6,7 @@ BottomNavigationBar navigation({index, ontapped, context}) {
     items: const <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: Icon(Icons.view_list),
-        title: Text('Meus Agendamentos'),
+        title: Text('Agendamentos'),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.calendar_today),

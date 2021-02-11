@@ -7,6 +7,7 @@ class Schedule {
   String nameEmployee;
   int hour;
   bool concluded;
+  String customerId;
 
   Schedule(
       {String nameCustomer,
@@ -16,7 +17,8 @@ class Schedule {
       bool concluded,
       String thumbnailCustomer,
       String nameEmployee,
-      String id}) {
+      String id,
+      String customerId}) {
     this.nameCustomer = nameCustomer;
     this.employeeId = employeeId;
     this.date = date;
@@ -25,6 +27,7 @@ class Schedule {
     this.thumbnailCustomer = thumbnailCustomer;
     this.nameEmployee = nameEmployee;
     this.id = id;
+    this.customerId = customerId;
   }
 
   toMap() {
@@ -35,7 +38,8 @@ class Schedule {
       'hour': this.hour,
       'concluded': this.concluded,
       'thumbnailCustomer': this.thumbnailCustomer,
-      'nameEmployee': this.nameEmployee
+      'nameEmployee': this.nameEmployee,
+      'customerId': this.customerId
     };
   }
 }

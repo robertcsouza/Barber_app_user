@@ -1,9 +1,11 @@
 import 'package:barber_app_user/Model/Barber.dart';
+import 'package:barber_app_user/Model/Employee.dart';
 import 'package:barber_app_user/components/AppBar.dart';
 import 'package:barber_app_user/components/CircleName.dart';
 import 'package:barber_app_user/components/EasyLoading.dart';
 import 'package:barber_app_user/styles/Fonts.dart';
 import 'package:barber_app_user/views/Gallery/Gallery.dart';
+import 'package:barber_app_user/views/Scheduling/CalendarBarber.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,6 +24,20 @@ class _SchedulingState extends State<Scheduling> {
   FirebaseAuth auth = FirebaseAuth.instance;
   List<NetworkImage> carouselList;
   Future barbers;
+
+  _next({Barber selectedBarber}) {
+    if (selectedBarber == null) {
+      EasyLoading.showError('Por favor preencha corretamente os campos');
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => CalendarBarber(
+                  barber: selectedBarber,
+                )),
+      );
+    }
+  }
 
   _getCarousel() async {
     List<NetworkImage> tmp = List();
@@ -171,6 +187,9 @@ class _SchedulingState extends State<Scheduling> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
+                          onTap: () {
+                            _next(selectedBarber: barbers[index]);
+                          },
                           leading: _image(
                               urlImage: barbers[index].imagePath,
                               name: barbers[index].nome),
