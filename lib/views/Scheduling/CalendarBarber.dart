@@ -1,7 +1,7 @@
 import 'package:barber_app_user/Helper/ConvertDate.dart';
 import 'package:barber_app_user/Model/Barber.dart';
 import 'package:barber_app_user/Model/Employee.dart';
-import 'package:barber_app_user/Model/Notify%20copy.dart';
+import 'package:barber_app_user/Model/Notify.dart';
 import 'package:barber_app_user/Model/Schedule.dart';
 import 'package:barber_app_user/components/Buttons.dart';
 import 'package:barber_app_user/components/EasyLoading.dart';

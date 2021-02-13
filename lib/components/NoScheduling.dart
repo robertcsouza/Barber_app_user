@@ -12,7 +12,7 @@ Widget noScheduling() {
         width: 200,
       ),
       Text(
-        'Nenhum agendamento nessa data',
+        'Você ainda não tem agendamentos',
         style: title(color: light),
       )
     ],

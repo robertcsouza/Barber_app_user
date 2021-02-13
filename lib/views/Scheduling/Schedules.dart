@@ -5,13 +5,14 @@ import 'package:barber_app_user/components/AppBar.dart';
 import 'package:barber_app_user/components/BottomNavigation.dart';
 import 'package:barber_app_user/components/Buttons.dart';
 import 'package:barber_app_user/components/EasyLoading.dart';
-import 'package:barber_app_user/components/Rating.dart';
+import 'package:barber_app_user/components/NoScheduling.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:barber_app_user/styles/Colors.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:barber_app_user/Model/Notify.dart';
 
 class Schedules extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _SchedulesState extends State<Schedules> {
     return db
         .collection('schedules')
         .where('customerId', isEqualTo: auth.currentUser.uid)
+        .where('concluded', isEqualTo: false)
         .snapshots();
   }
 
@@ -41,7 +43,8 @@ class _SchedulesState extends State<Schedules> {
     easyLoading();
     DateTime now = DateTime.now();
     Review review = Review(stars: stars, comment: comment, date: now);
-    db.collection('reviwes').add(review.toMap()).then((value) {
+    db.collection('reviwes').add(review.toMap()).then((value) async {
+      await _dismissRating();
       EasyLoading.showSuccess('Obrigado por participar');
     });
   }
@@ -160,8 +163,6 @@ class _SchedulesState extends State<Schedules> {
                       ),
                       onPressed: () {
                         _saveReview(stars: stars, comment: controller.text);
-                        Navigator.of(context, rootNavigator: true)
-                            .pop('dialog');
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -226,12 +227,16 @@ class _SchedulesState extends State<Schedules> {
                     child: Text('nao há dados'),
                   );
                 } else {
-                  return ListView.builder(
-                    itemCount: schedules.length,
-                    itemBuilder: (context, index) {
-                      return _listTile(schedules[index]);
-                    },
-                  );
+                  if (schedules.length <= 0) {
+                    return noScheduling();
+                  } else {
+                    return ListView.builder(
+                      itemCount: schedules.length,
+                      itemBuilder: (context, index) {
+                        return _listTile(schedules[index]);
+                      },
+                    );
+                  }
                 }
               }
             },
@@ -306,7 +311,33 @@ class _SchedulesState extends State<Schedules> {
                                 },
                                 child: Text('Não')),
                             FlatButton(
-                              onPressed: () async {},
+                              onPressed: () async {
+                                Notify notify = Notify(
+                                    customerName: schedule.nameCustomer,
+                                    date: schedule.date,
+                                    hour: schedule.hour,
+                                    type: 'Cancelamento');
+
+                                db
+                                    .collection('schedules')
+                                    .doc(schedule.id)
+                                    .delete()
+                                    .then((value) {
+                                  db
+                                      .collection('notifications-admin')
+                                      .add(notify.toMap())
+                                      .then((value) {
+                                    db
+                                        .collection(
+                                            'notifications-${schedule.employeeId}')
+                                        .add(notify.toMap())
+                                        .then((value) {
+                                      Navigator.of(context, rootNavigator: true)
+                                          .pop('dialog');
+                                    });
+                                  });
+                                });
+                              },
                               child: Text('Sim'),
                             )
                           ],
